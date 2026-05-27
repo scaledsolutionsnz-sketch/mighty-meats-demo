@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave a Review | Mighty Meats Invercargill</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #c8302a; --red-dark: #a82420; --dark: #0b0b0d; --dark3: #1e1e22;
+      --cream: #f8f5f0; --text-dark: #1a1a1e; --text-muted: #6b6760;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: var(--dark); color: #fff; min-height: 100vh; display: flex; flex-direction: column; }
+    nav {
+      padding: 20px 48px; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(11,11,13,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .nav-logo { font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-logo span { color: var(--red); }
+    .nav-back { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-back:hover { color: #fff; }
+    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 80px 24px; }
+    .review-card {
+      background: var(--dark3); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;
+      padding: 64px 56px; max-width: 600px; width: 100%; text-align: center;
+    }
+    .review-logo { font-family: 'Oswald', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .review-logo span { color: var(--red); }
+    .review-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 48px; }
+    .review-prompt { font-family: 'Oswald', sans-serif; font-size: 1.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
+    .review-sub { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 48px; }
+    .stars-row { display: flex; justify-content: center; gap: 12px; margin-bottom: 48px; }
+    .star-btn {
+      width: 64px; height: 64px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04); cursor: pointer; font-size: 1.8rem; line-height: 1;
+      transition: all 0.2s ease; display: flex; align-items: center; justify-content: center;
+    }
+    .star-btn:hover { border-color: #f59e0b; background: rgba(245,158,11,0.1); transform: translateY(-3px) scale(1.08); }
+    .star-btn.selected { border-color: #f59e0b; background: rgba(245,158,11,0.15); }
+    .star-num { display: block; font-family: 'Oswald', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 6px; }
+    footer-link { display: block; margin-top: 32px; }
+    .back-home { display: inline-block; margin-top: 32px; color: rgba(255,255,255,0.3); font-size: 0.82rem; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .back-home:hover { color: rgba(255,255,255,0.7); }
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .review-card { padding: 40px 24px; }
+      .star-btn { width: 52px; height: 52px; font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">Mighty <span>Meats</span></a>
+    <a href="index.html" class="nav-back">&#8592; Back to Site</a>
+  </nav>
+  <main>
+    <div class="review-card">
+      <div class="review-logo">Mighty <span>Meats</span></div>
+      <div class="review-tagline">Invercargill's Butcher</div>
+      <h1 class="review-prompt">How Was Your Experience?</h1>
+      <p class="review-sub">Your feedback means a lot to us. Tap the number of stars that matches your experience.</p>
+      <div class="stars-row">
+        <div>
+          <button class="star-btn" onclick="handleRating(1)" aria-label="1 star">&#9733;</button>
+          <span class="star-num">1</span>
+        </div>
+        <div>
+          <button class="star-btn" onclick="handleRating(2)" aria-label="2 stars">&#9733;&#9733;</button>
+          <span class="star-num">2</span>
+        </div>
+        <div>
+          <button class="star-btn" onclick="handleRating(3)" aria-label="3 stars">&#9733;&#9733;&#9733;</button>
+          <span class="star-num">3</span>
+        </div>
+        <div>
+          <button class="star-btn" onclick="handleRating(4)" aria-label="4 stars">&#9733;&#9733;&#9733;&#9733;</button>
+          <span class="star-num">4</span>
+        </div>
+        <div>
+          <button class="star-btn" onclick="handleRating(5)" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</button>
+          <span class="star-num">5</span>
+        </div>
+      </div>
+      <a href="index.html" class="back-home">&#8592; Back to Mighty Meats</a>
+    </div>
+  </main>
+  <script>
+    function handleRating(rating) {
+      if (rating >= 4) {
+        window.location.href = 'https://www.google.com/search?q=Mighty+Meats+Invercargill#lrd=0x0:0x0,3';
+      } else {
+        window.location.href = 'private.html?rating=' + rating;
+      }
+    }
+  </script>
+</body>
+</html>
